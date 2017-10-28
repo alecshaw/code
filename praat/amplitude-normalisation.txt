@@ -1,0 +1,35 @@
+# This script normalises amplitude.
+
+clearinfo
+
+# Script in same directory as sound files.
+directory$ = "day1-extracts"
+
+# New sound files in the sub-directory "new_files" (or whatever you wanna call it).
+directory2$ = "normalised"
+
+Create Strings as file list... list 'directory$'/*.wav
+numberOfFiles = Get number of strings
+
+for ifile to numberOfFiles
+	select Strings list
+	fileName$ = Get string... ifile
+	Read from file... 'directory$'/'fileName$'
+
+	fileName$ = replace$("'fileName$'", ".wav", "",0)
+
+	Convert to mono
+
+	# Scaling average intensity to 70dB. you can change it to whatever level you want.
+	Scale intensity... 70
+
+	Save as WAV file... 'directory2$'/'fileName$'.wav
+
+	selectObject: "Sound 'fileName$'"
+	plusObject: "Sound 'fileName$'_mono"
+	Remove
+endfor
+
+
+select Strings list
+Remove
