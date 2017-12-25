@@ -14,17 +14,17 @@ numberOfFiles = Get number of strings
 
 for ifile to numberOfFiles
   select Strings list
-  fileName$ = Get string... ifile
-  Read from file... 'directory$'/'fileName$'
+  filename$ = Get string... ifile
+  Read from file... 'directory$'/'filename$'
 
-  fileName$ = replace$("'fileName$'", ".wav", "",0)
+  filename$ = replace$("'filename$'", ".wav", "",0)
 
   Convert to mono
 
   # Scaling average intensity to 70dB
   Scale intensity... 70
 
-  Save as WAV file... 'directory2$'/'fileName$'.wav
+  Save as WAV file... 'destination_dir$'/'filename$'.wav
 
   selectObject: "Sound 'fileName$'"
   plusObject: "Sound 'fileName$'_mono"
