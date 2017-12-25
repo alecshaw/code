@@ -1,33 +1,36 @@
-# This script normalises amplitude.
+# Amplitude normalization in Praat
+# Alec Shaw <alecshaw@hi.is>
+
+# This script normalises amplitude of a selection of sound files
 
 clearinfo
 
 # Script in same directory as sound files.
-directory$ = "day1-extracts"
+target_dir$ = target$
 
 # New sound files in the sub-directory "new_files" (or whatever you wanna call it).
-directory2$ = "normalised"
+destination_dir$ = destination$
 
 Create Strings as file list... list 'directory$'/*.wav
 numberOfFiles = Get number of strings
 
 for ifile to numberOfFiles
-	select Strings list
-	fileName$ = Get string... ifile
-	Read from file... 'directory$'/'fileName$'
+  select Strings list
+  fileName$ = Get string... ifile
+  Read from file... 'directory$'/'fileName$'
 
-	fileName$ = replace$("'fileName$'", ".wav", "",0)
+  fileName$ = replace$("'fileName$'", ".wav", "",0)
 
-	Convert to mono
+  Convert to mono
 
-	# Scaling average intensity to 70dB. you can change it to whatever level you want.
-	Scale intensity... 70
+  # Scaling average intensity to 70dB. you can change it to whatever level you want.
+  Scale intensity... 70
 
-	Save as WAV file... 'directory2$'/'fileName$'.wav
+  Save as WAV file... 'directory2$'/'fileName$'.wav
 
-	selectObject: "Sound 'fileName$'"
-	plusObject: "Sound 'fileName$'_mono"
-	Remove
+  selectObject: "Sound 'fileName$'"
+  plusObject: "Sound 'fileName$'_mono"
+  Remove
 endfor
 
 
