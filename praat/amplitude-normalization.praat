@@ -13,11 +13,11 @@ comment [Where are the sound files you want to normalize?]
 comment [Where do you want to output the normalized files?]
   text directory [Destination directory]
 
-target_dir$ = target$
-destination_dir$ = destination$
+# target_dir$ = chooseDirectory$ ("Choose the directory with your sound files")
+# destination_dir$ = destination$
 
 Create Strings as file list... list 'target_dir$'/*.wav
-numberOfFiles = Get number of strings
+number_files = Get number of strings
 
 for ifile to numberOfFiles
   select Strings list
