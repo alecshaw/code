@@ -1,15 +1,22 @@
 # Amplitude normalization
 # Alec Shaw <alecshaw@hi.is>
+# Version 0.0.1
 
-# This script normalises amplitude of a selection of sound files
+# This script normalizes amplitude of a selection of sound files
 
 # Clear all existing info
 clearinfo
 
+form [Normalize amplitude]
+comment [Where are the sound files you want to normalize?]
+  text directory [Target directory]
+comment [Where do you want to output the normalized files?]
+  text directory [Destination directory]
+
 target_dir$ = target$
 destination_dir$ = destination$
 
-Create Strings as file list... list 'directory$'/*.wav
+Create Strings as file list... list 'target_dir$'/*.wav
 numberOfFiles = Get number of strings
 
 for ifile to numberOfFiles
